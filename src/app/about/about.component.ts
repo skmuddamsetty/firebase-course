@@ -45,39 +45,39 @@ export class AboutComponent implements OnInit {
     //     console.log(courses);
     //   });
     // *********************** USING ANGULAR FIRE*********************************
-    // *********************** USING Value Changes*********************************
-    this.db
-      .collection("courses")
-      .valueChanges()
-      .subscribe((val) => console.log(val));
-    // ******************** USING SnapShot changes*********************************
-    this.db
-      .collection("courses")
-      .snapshotChanges()
-      .subscribe((snaps) => {
-        const courses: Course[] = snaps.map((snap) => {
-          const courseData: Object = snap.payload.doc.data();
-          return <Course>{
-            id: snap.payload.doc.id,
-            ...courseData,
-          };
-        });
-        console.log(courses);
-      });
+    // // ********************* USING Value Changes*********************************
+    // this.db
+    //   .collection("courses")
+    //   .valueChanges()
+    //   .subscribe((val) => console.log(val));
+    // // ****************** USING SnapShot changes*********************************
+    // this.db
+    //   .collection("courses")
+    //   .snapshotChanges()
+    //   .subscribe((snaps) => {
+    //     const courses: Course[] = snaps.map((snap) => {
+    //       const courseData: Object = snap.payload.doc.data();
+    //       return <Course>{
+    //         id: snap.payload.doc.id,
+    //         ...courseData,
+    //       };
+    //     });
+    //     console.log(courses);
+    //   });
     // ********************* USING State Changes*********************************
-    // state changes returns the total collection at first, but after that only changed documents are retrieved again unlike snapshot and value changes
-    this.db
-      .collection("courses")
-      .stateChanges()
-      .subscribe((snaps) => {
-        const courses: Course[] = snaps.map((snap) => {
-          const courseData: Object = snap.payload.doc.data();
-          return <Course>{
-            id: snap.payload.doc.id,
-            ...courseData,
-          };
-        });
-        console.log(courses);
-      });
+    // // state changes returns the total collection at first, but after that only changed documents are retrieved again unlike snapshot and value changes
+    // this.db
+    //   .collection("courses")
+    //   .stateChanges()
+    //   .subscribe((snaps) => {
+    //     const courses: Course[] = snaps.map((snap) => {
+    //       const courseData: Object = snap.payload.doc.data();
+    //       return <Course>{
+    //         id: snap.payload.doc.id,
+    //         ...courseData,
+    //       };
+    //     });
+    //     console.log(courses);
+    //   });
   }
 }
