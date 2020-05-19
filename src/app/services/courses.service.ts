@@ -12,15 +12,19 @@ export class CoursesService {
 
   loadAllCourses(): Observable<Course[]> {
     return this.db
-      .collection("courses", (ref) =>
-        // using orderBy
-        // ref.orderBy("seqNo").where("seqNo", "==", 2)
-        // ref.where("seqNo", "==", 2)
-        // ref.where("seqNo", ">", 0).where("seqNo", "<=", 5)
-        // ref.orderBy("seqNo").startAt(0).endAt(5)
-        // ref.orderBy("seqNo").startAfter(0).endAt(5)
-        // ref.where("categories", "array-contains", "BEGINNER")
-        ref.orderBy("seqNo")
+      .collection(
+        "courses",
+        (ref) =>
+          // using orderBy
+          // ref.orderBy("seqNo").where("seqNo", "==", 2)
+          // ref.where("seqNo", "==", 2)
+          // ref.where("seqNo", ">", 0).where("seqNo", "<=", 5)
+          // ref.orderBy("seqNo").startAt(0).endAt(5)
+          // ref.orderBy("seqNo").startAfter(0).endAt(5)
+          // ref.where("categories", "array-contains", "BEGINNER")
+          // compound query example
+          ref.where("seqNo", "==", 5).where("lessonsCount", ">=", 5)
+        // ref.orderBy("seqNo")
       )
       .snapshotChanges()
       .pipe(
